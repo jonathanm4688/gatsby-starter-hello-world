@@ -1,5 +1,5 @@
 import React from 'react'
-import {useStaticQuery, graphql} from 'gatsby'
+import {StaticQuery, graphql} from 'gatsby'
 
 const getData = graphql`{
     site {
@@ -17,9 +17,13 @@ const getData = graphql`{
 
 export const HeaderStatic = () => {
     return (
-        <div>
-            I am using a static query
-        </div>
+        <StaticQuery query={getData} render={(data) =>{
+            return (
+                <div>
+                    <h1>{data.site.siteMetadata.description}</h1>
+                </div>
+            )
+        }}></StaticQuery>
     )
 }
 
